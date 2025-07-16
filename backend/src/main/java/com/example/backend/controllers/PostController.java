@@ -1,11 +1,16 @@
 package com.example.backend.controllers;
 
+import com.example.backend.exeptions.DeepSeekException;
 import com.example.backend.models.Post;
 import com.example.backend.repositories.PostRepository;
+import com.example.backend.services.AIService;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,9 +19,11 @@ import java.util.UUID;
 public class PostController {
 
     private final PostRepository postRepository;
+    private final AIService deepSeekService;
 
-    public PostController(PostRepository postRepository) {
+    public PostController(PostRepository postRepository, AIService deepSeekService) {
         this.postRepository = postRepository;
+        this.deepSeekService = deepSeekService;
     }
 
     //Получить все посты
@@ -37,9 +44,19 @@ public class PostController {
     //Создать пост
     @PostMapping
     public ResponseEntity<Post> createPost(@RequestBody Post post) {
+        if (StringUtils.isEmpty(post.getTitle())) {
+            try {
+                String generatedTitle = deepSeekService.generatePostTitle(
+                        StringUtils.defaultIfEmpty(post.getContent(), "")
+                );
+                post.setTitle(generatedTitle);
+            } catch (DeepSeekException e) {
+                post.setTitle("Новый пост - " + LocalDate.now());
+            }
+        }
+
         Post savedPost = postRepository.save(post);
-        return ResponseEntity
-                .created(URI.create("/api/posts/" + savedPost.getId()))
+        return ResponseEntity.created(URI.create("/posts/" + savedPost.getId()))
                 .body(savedPost);
     }
 
@@ -63,4 +80,6 @@ public class PostController {
         postRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+
 }
