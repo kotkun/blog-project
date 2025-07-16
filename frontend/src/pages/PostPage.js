@@ -1,13 +1,13 @@
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { getPost } from '../../../frontend/src/services/api';
+import { getPost } from '../services/api';
+import {useEffect, useState} from "react";
 
 export default function PostPage() {
     const { id } = useParams();
     const [post, setPost] = useState(null);
 
     useEffect(() => {
-        if (id) getPost(id).then(({ data }) => setPost(data));
+        getPost(id).then(data => setPost(data));
     }, [id]);
 
     if (!post) return <div>Загрузка...</div>;

@@ -7,7 +7,7 @@
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
     <changeSet id="2" author="bootstrap" dbms="postgresql" runOnChange="true">
         <sqlFile encoding="utf8"
-                 path="../sql/create-posts-table.sql"
+                 path="../sql/2-create-posts-table.sql"
                  relativeToChangelogFile="true"
                  splitStatements="false"
                  stripComments="false"/>

@@ -1,0 +1,25 @@
+:root {
+  --primary-color: #3498db;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+}
+
+.post-list {
+  display: grid;
+  gap: 20px;
+}
+
+.post-item {
+  border: 1px solid #ddd;
+  padding: 15px;
+}
+
+.error {
+  color: red;
+  padding: 20px;
+  border: 1px solid red;
+  background-color: #ffecec;
+}

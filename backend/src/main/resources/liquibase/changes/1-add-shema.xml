@@ -7,7 +7,7 @@
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
     <changeSet id="1" author="bootstrap" dbms="postgresql" runOnChange="true">
         <sqlFile encoding="utf8"
-                 path="../sql/add-shema.sql"
+                 path="../sql/1-add-shema.sql"
                  relativeToChangelogFile="true"
                  splitStatements="false"
                  stripComments="false"/>
