@@ -13,8 +13,10 @@ api.interceptors.response.use(
     }
 );
 
-export const getPosts = () => api.get('/posts');
+
 export const getPost = (id) => api.get(`/posts/${id}`);
+export const getPosts = () => api.get('/posts');
+export const updatePost = (id, post) => api.put(`/posts/${id}`, post);
 export const createPost = (post) => api.post('/posts', post);
 export const deletePost = (id) => api.delete(`/posts/${id}`);
 

@@ -1,25 +1,77 @@
 :root {
-  --primary-color: #3498db;
+    --primary-color: #3498db;
 }
 
 body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
 }
 
 .post-list {
-  display: grid;
-  gap: 20px;
+    display: grid;
+    gap: 20px;
 }
 
 .post-item {
-  border: 1px solid #ddd;
-  padding: 15px;
+    border: 1px solid #ddd;
+    padding: 15px;
 }
 
 .error {
-  color: red;
-  padding: 20px;
-  border: 1px solid red;
-  background-color: #ffecec;
+    color: red;
+    padding: 20px;
+    border: 1px solid red;
+    background-color: #ffecec;
+}
+
+.post-item {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.post-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.view-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.delete-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.view-button:hover, .delete-button:hover {
+    opacity: 0.8;
+}
+
+article header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+article button {
+    padding: 5px 10px;
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+article button:hover {
+    background: #e0e0e0;
 }
