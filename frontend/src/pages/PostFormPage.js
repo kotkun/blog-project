@@ -1,17 +1,30 @@
-import {useNavigate, useParams} from 'react-router-dom';
-import {useEffect, useState} from 'react';
-import {createPost, getPost, updatePost} from '../services/api';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { createPost, getPost, updatePost } from '../services/api';
 import PostForm from '../components/PostForm';
+import { Container, Button, Spinner } from 'react-bootstrap';
 
 export default function PostFormPage() {
-    const {id} = useParams();
+    const { id } = useParams();
     const navigate = useNavigate();
     const [post, setPost] = useState(null);
+    const [loading, setLoading] = useState(!!id);
     const isEditMode = !!id;
 
     useEffect(() => {
         if (isEditMode) {
-            getPost(id).then(data => setPost(data));
+            const fetchPost = async () => {
+                try {
+                    const data = await getPost(id);
+                    setPost(data);
+                } catch (err) {
+                    console.error(err);
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            fetchPost();
         }
     }, [id, isEditMode]);
 
@@ -28,18 +41,30 @@ export default function PostFormPage() {
         }
     };
 
-    if (isEditMode && !post) return <div>Загрузка...</div>;
+    if (loading) {
+        return (
+            <Container className="text-center mt-5">
+                <Spinner animation="border" />
+            </Container>
+        );
+    }
 
     return (
-        <div className="form-page">
-            <h2>{isEditMode ? 'Редактировать пост' : 'Создать пост'}</h2>
-            <button onClick={() => navigate(-1)} className="back-button">
-                Назад
-            </button>
+        <Container className="py-4">
+            <div className="d-flex justify-content-between align-items-center mb-4">
+                <h2>{isEditMode ? 'Редактировать пост' : 'Создать пост'}</h2>
+                <Button
+                    variant="outline-secondary"
+                    onClick={() => navigate(-1)}
+                >
+                    Назад
+                </Button>
+            </div>
+
             <PostForm
-                initialData={post || {title: '', content: ''}}
+                initialData={post || { title: '', content: '' }}
                 onSubmit={handleSubmit}
             />
-        </div>
+        </Container>
     );
 }

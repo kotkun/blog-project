@@ -1,52 +1,78 @@
-import {useState} from "react";
+import { useState } from "react";
+import { Form, Button } from 'react-bootstrap';
 
-export default function PostForm(
-    {initialData = {title: '', content: ''}, onSubmit}) {
+export default function PostForm({ initialData = { title: '', content: '' }, onSubmit }) {
     const [formData, setFormData] = useState(initialData);
     const [errors, setErrors] = useState({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleChange = (e) => {
-        const {name, value} = e.target;
-        setFormData(prev => ({...prev, [name]: value}));
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const errors = validate();
-        if (Object.keys(errors).length === 0) {
-            onSubmit(formData);
+        const validationErrors = validate();
+
+        if (Object.keys(validationErrors).length === 0) {
+            setIsSubmitting(true);
+            try {
+                await onSubmit(formData);
+            } finally {
+                setIsSubmitting(false);
+            }
         } else {
-            setErrors(errors);
+            setErrors(validationErrors);
         }
     };
 
     const validate = () => {
         const newErrors = {};
-        //if (!formData.title.trim()) newErrors.title = 'Заголовок обязателен';
         if (!formData.content.trim()) newErrors.content = 'Текст обязателен';
         return newErrors;
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <input
+        <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3">
+                <Form.Label>Заголовок</Form.Label>
+                <Form.Control
+                    type="text"
                     name="title"
                     value={formData.title}
                     onChange={handleChange}
-                    placeholder="Заголовок"/>
-                {errors.title && <span className="error">{errors.title}</span>}
-            </div>
-            <div>
-        <textarea
-            name="content"
-            value={formData.content}
-            onChange={handleChange}
-            placeholder="Текст поста"/>
-                {errors.content && <span className="error">{errors.content}</span>}
-            </div>
-            <button type="submit">Сохранить</button>
-        </form>
+                    placeholder="Введите заголовок"
+                    isInvalid={!!errors.title}
+                />
+                <Form.Control.Feedback type="invalid">
+                    {errors.title}
+                </Form.Control.Feedback>
+            </Form.Group>
 
+            <Form.Group className="mb-3">
+                <Form.Label>Содержание</Form.Label>
+                <Form.Control
+                    as="textarea"
+                    rows={5}
+                    name="content"
+                    value={formData.content}
+                    onChange={handleChange}
+                    placeholder="Введите текст поста"
+                    isInvalid={!!errors.content}
+                />
+                <Form.Control.Feedback type="invalid">
+                    {errors.content}
+                </Form.Control.Feedback>
+            </Form.Group>
+
+            <Button
+                variant="primary"
+                type="submit"
+                disabled={isSubmitting}
+            >
+                {isSubmitting ? 'Сохранение...' : 'Сохранить'}
+            </Button>
+        </Form>
     );
 }

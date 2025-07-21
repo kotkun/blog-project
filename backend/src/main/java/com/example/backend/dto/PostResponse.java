@@ -11,16 +11,16 @@ import java.util.UUID;
 @Data
 public class PostResponse {
 
-    @JsonProperty("Id")
+    @JsonProperty("id")
     private UUID id;
 
-    @JsonProperty("Title")
+    @JsonProperty("title")
     private String title;
 
-    @JsonProperty("Content")
+    @JsonProperty("content")
     private String content;
 
-    @JsonProperty("Created")
+    @JsonProperty("createdDate")
     private LocalDateTime createdDate;
 
 

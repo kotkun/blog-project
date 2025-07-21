@@ -1,11 +1,14 @@
 import PostItem from './PostItem';
+import { Row, Col } from 'react-bootstrap';
 
 export default function PostList({ posts, onDelete }) {
     return (
-        <div className="post-list">
+        <Row>
             {posts.map(post => (
-                <PostItem key={post.id} post={post} onDelete={onDelete} />
+                <Col key={post.id} md={6} lg={4} className="mb-4">
+                    <PostItem post={post} onDelete={onDelete} />
+                </Col>
             ))}
-        </div>
+        </Row>
     );
 }
