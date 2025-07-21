@@ -1,7 +1,7 @@
-package com.example.backend.configs;
+package com.example.backend.config;
 
-import com.example.backend.exeptions.DeepSeekException;
-import lombok.Value;
+import com.example.backend.exeption.DeepSeekException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;

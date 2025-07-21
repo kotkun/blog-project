@@ -1,6 +1,6 @@
-package com.example.backend.services;
+package com.example.backend.service;
 
-import com.example.backend.exeptions.DeepSeekException;
+import com.example.backend.exeption.DeepSeekException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;

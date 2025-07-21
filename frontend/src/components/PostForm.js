@@ -10,7 +10,7 @@ export default function PostForm(
         setFormData(prev => ({...prev, [name]: value}));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const errors = validate();
         if (Object.keys(errors).length === 0) {
@@ -22,7 +22,7 @@ export default function PostForm(
 
     const validate = () => {
         const newErrors = {};
-        if (!formData.title.trim()) newErrors.title = 'Заголовок обязателен';
+        //if (!formData.title.trim()) newErrors.title = 'Заголовок обязателен';
         if (!formData.content.trim()) newErrors.content = 'Текст обязателен';
         return newErrors;
     };
