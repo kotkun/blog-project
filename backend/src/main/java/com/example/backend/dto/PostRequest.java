@@ -2,21 +2,19 @@ package com.example.backend.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Data
 public class PostRequest {
 
-    @JsonProperty("Title")
+    @JsonProperty("title")
     private String title;
 
-    @JsonProperty("Content")
+    @JsonProperty("content")
     private String content;
 
-    @JsonProperty("Created")
+    @JsonProperty("created")
     private LocalDateTime createdDate;
 
     @JsonProperty("isDeleted")
