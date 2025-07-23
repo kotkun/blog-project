@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DatabaseMigrationSettings" lastSelectedDirectory="migration" />
   <component name="JpaLiquibaseChangesConfig">
     <exclude-change idName="posts" tagName="createTable" />
     <exclude-change idName="blog#posts#u_id" tagName="dropColumn" />
+    <exclude-change idName="blog#posts#created_date" tagName="dropColumn" />
+    <exclude-change idName="blog#posts#deleted_date" tagName="dropColumn" />
+    <exclude-change idName="blog#posts#updated_date" tagName="dropColumn" />
+    <exclude-change idName="users#email" tagName="addUniqueConstraint" />
+    <exclude-change idName="users#username" tagName="addUniqueConstraint" />
+    <exclude-change idName="users" tagName="createTable" />
   </component>
 </project>
