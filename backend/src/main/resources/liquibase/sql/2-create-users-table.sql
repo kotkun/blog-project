@@ -6,6 +6,7 @@ CREATE TABLE blog.users (
     lastName        VARCHAR(255),
     email           VARCHAR(255) NOT NULL UNIQUE ,
     birthdate       TIMESTAMP,
+    avatarUrl       VARCHAR(1000),
     created_date    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_date    TIMESTAMP,
     deleted_date    TIMESTAMP

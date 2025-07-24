@@ -30,36 +30,36 @@ public final class UserMapper {
         user.setUpdatedDate(LocalDateTime.now());
     }
 
-    public static UserResponseDto toDto(User u) {
+    public static UserResponseDto toDto(User user) {
         UserResponseDto r = new UserResponseDto();
-        r.setUsername(u.getUsername());
-        r.setEmail(u.getEmail());
-        r.setAvatarUrl(u.getAvatarUrl());
-        r.setBirthDate(u.getBirthDate());
-        r.setCreatedDate(u.getCreatedDate());
-        r.setUpdatedDate(u.getUpdatedDate());
+        r.setUsername(user.getUsername());
+        r.setEmail(user.getEmail());
+        r.setAvatarUrl(user.getAvatarUrl());
+        r.setBirthDate(user.getBirthDate());
+        r.setCreatedDate(user.getCreatedDate());
+        r.setUpdatedDate(user.getUpdatedDate());
         return r;
     }
 
-    private static void copyIntoEntity(User u, UserRequestDto d, boolean overwriteNull) {
+    private static void copyIntoEntity(User user, UserRequestDto dto, boolean overwriteNull) {
 
-        if (overwriteNull || d.getUsername()   != null) {
-            u.setUsername(d.getUsername());
+        if (overwriteNull || dto.getUsername()   != null) {
+            user.setUsername(dto.getUsername());
         }
-        if (overwriteNull || d.getEmail()      != null) {
-            u.setEmail(d.getEmail());
+        if (overwriteNull || dto.getEmail()      != null) {
+            user.setEmail(dto.getEmail());
         }
-        if (overwriteNull || d.getPassword()   != null) {
-            String raw = d.getPassword();
-            if (raw != null) u.setPasswordHash(ENC.encode(raw));
-            else if (overwriteNull) u.setPasswordHash(null);
+        if (overwriteNull || dto.getPassword()   != null) {
+            String raw = dto.getPassword();
+            if (raw != null) user.setPassword(ENC.encode(raw));
+            else if (overwriteNull) user.setPassword(null);
         }
 
-        if (overwriteNull || d.getAvatarUrl()  != null) {
-            u.setAvatarUrl(d.getAvatarUrl());
+        if (overwriteNull || dto.getAvatarUrl()  != null) {
+            user.setAvatarUrl(dto.getAvatarUrl());
         }
-        if (overwriteNull || d.getBirthDate()  != null) {
-            u.setBirthDate(d.getBirthDate());
+        if (overwriteNull || dto.getBirthDate()  != null) {
+            user.setBirthDate(dto.getBirthDate());
         }
     }
 }

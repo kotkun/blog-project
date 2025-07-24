@@ -3,10 +3,13 @@ package com.example.backend.model;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,7 +17,7 @@ import java.util.UUID;
 @Data
 @Entity
 @Table(name = "users")
-public class User extends BaseEntity {
+public class User extends BaseEntity  implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,8 +26,14 @@ public class User extends BaseEntity {
     @Column(name = "username")
     private String username;
 
-    @Column(name = "passwordHash")
-    private String passwordHash;
+    @Column(name = "firstName")
+    private String firstName;
+
+    @Column(name = "lastName")
+    private String lastName;
+
+    @Column(name = "password")
+    private String password;
 
     @Column(name = "email")
     private String email;
@@ -36,4 +45,28 @@ public class User extends BaseEntity {
     private LocalDate birthDate;
 
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return UserDetails.super.isAccountNonExpired();
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return UserDetails.super.isAccountNonLocked();
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return UserDetails.super.isCredentialsNonExpired();
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return UserDetails.super.isEnabled();
+    }
 }
