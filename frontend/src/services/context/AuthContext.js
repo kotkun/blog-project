@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { login, logout, getCurrentUser, register } from './authApi';
+import { login, logout, getCurrentUser, register } from '../api/authApi';
 
 const AuthContext = createContext(undefined);
 
@@ -37,8 +37,13 @@ export function AuthProvider({ children }) {
     };
 
     const signOut = async () => {
-        await logout();
-        setUser(null);
+        try {
+            await logout();
+            setUser(null);
+            // Дополнительные действия при выходе
+        } catch (error) {
+            console.error('Logout error:', error);
+        }
     };
 
     return (

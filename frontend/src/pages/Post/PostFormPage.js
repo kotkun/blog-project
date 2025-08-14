@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { createPost, getPost, updatePost } from '../services/api';
-import PostForm from '../components/PostForm';
+import { createPost, getPost, updatePost } from '../../services/api/api';
+import PostCard from '../../components/Post/PostCard';
 import { Container, Button, Spinner } from 'react-bootstrap';
 
 export default function PostFormPage() {
@@ -61,7 +61,7 @@ export default function PostFormPage() {
                 </Button>
             </div>
 
-            <PostForm
+            <PostCard
                 initialData={post || { title: '', content: '' }}
                 onSubmit={handleSubmit}
             />

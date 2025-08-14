@@ -8,14 +8,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 
 @Service
 public class JwtService {
 
+    private final Set<String> tokenBlacklist = Collections.synchronizedSet(new HashSet<>());
     private final Key secret = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     private final long jwtExpirationInMs = 3600000; // 1 час
 
@@ -62,5 +61,13 @@ public class JwtService {
 
     private Boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
+    }
+    public void invalidateToken(String token) {
+        tokenBlacklist.add(token);
+    }
+
+    public boolean isValid(String token) {
+        return !tokenBlacklist.contains(token) &&
+                !isTokenExpired(token); // Проверка срока действия
     }
 }

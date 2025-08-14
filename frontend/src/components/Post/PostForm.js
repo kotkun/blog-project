@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Card, Button } from 'react-bootstrap';
 
-export default function PostItem({ post, onDelete }) {
+export default function PostForm({ post, onDelete }) {
     const navigate = useNavigate();
 
     return (

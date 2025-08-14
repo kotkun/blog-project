@@ -1,7 +1,11 @@
 import axios from 'axios';
 
+
 const api = axios.create({
     baseURL: process.env.REACT_APP_API_URL || 'http://localhost:8088/api',
+    headers: {
+        'Content-Type': 'application/json'
+    }
 });
 
 // Добавляем перехватчик ошибок
@@ -13,6 +17,14 @@ api.interceptors.response.use(
     }
 );
 
+// Добавьте interceptor для JWT токена
+api.interceptors.request.use(config => {
+    const token = localStorage.getItem('token');
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+});
 
 export const getPost = (id) => api.get(`/posts/${id}`);
 export const getPosts = () => api.get('/posts');

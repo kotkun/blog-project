@@ -1,0 +1,138 @@
+Ñòðóêòóðà ïàïîê òîìà Windows
+Ñåðèéíûé íîìåð òîìà: C80F-5621
+C:.
+¦   blog-app.iml
+¦   docker-compose.yml
+¦   README.md
+¦   
++---backend
+¦   ¦   .gitattributes
+¦   ¦   .gitignore
+¦   ¦   build.gradle
+¦   ¦   Dockerfile
+¦   ¦   gradlew
+¦   ¦   gradlew.bat
+¦   ¦   HELP.md
+¦   ¦   settings.gradle   
+¦   L---src
+¦       +---main
+¦       ¦   +---java
+¦       ¦   ¦   L---com
+¦       ¦   ¦       L---example
+¦       ¦   ¦           L---backend
+¦       ¦   ¦               ¦   BackendApplication.java
+¦       ¦   ¦               ¦   
+¦       ¦   ¦               +---config
+¦       ¦   ¦               ¦       AIConfig.java
+¦       ¦   ¦               ¦       CorsConfig.java
+¦       ¦   ¦               ¦       JwtRequestFilter.java
+¦       ¦   ¦               ¦       SecurityConfig.java
+¦       ¦   ¦               ¦       WebConfig.java
+¦       ¦   ¦               ¦       
+¦       ¦   ¦               +---controller
+¦       ¦   ¦               ¦       AuthenticationController.java
+¦       ¦   ¦               ¦       PostController.java
+¦       ¦   ¦               ¦       UserController.java
+¦       ¦   ¦               ¦       
+¦       ¦   ¦               +---dto
+¦       ¦   ¦               ¦       AuthRequest.java
+¦       ¦   ¦               ¦       AuthResponse.java
+¦       ¦   ¦               ¦       PostRequest.java
+¦       ¦   ¦               ¦       PostResponse.java
+¦       ¦   ¦               ¦       RegisterRequest.java
+¦       ¦   ¦               ¦       UserRequestDto.java
+¦       ¦   ¦               ¦       UserResponseDto.java
+¦       ¦   ¦               ¦       
+¦       ¦   ¦               +---exeption
+¦       ¦   ¦               ¦       DeepSeekException.java
+¦       ¦   ¦               ¦       
+¦       ¦   ¦               +---mapper
+¦       ¦   ¦               ¦       PostMapper.java
+¦       ¦   ¦               ¦       PostMapperStruct.java
+¦       ¦   ¦               ¦       UserMapper.java
+¦       ¦   ¦               ¦       
+¦       ¦   ¦               +---model
+¦       ¦   ¦               ¦       BaseEntity.java
+¦       ¦   ¦               ¦       Post.java
+¦       ¦   ¦               ¦       User.java
+¦       ¦   ¦               ¦       
+¦       ¦   ¦               +---repository
+¦       ¦   ¦               ¦       PostRepository.java
+¦       ¦   ¦               ¦       UserRepository.java
+¦       ¦   ¦               ¦       
+¦       ¦   ¦               L---service
+¦       ¦   ¦                       AIService.java
+¦       ¦   ¦                       JwtService.java
+¦       ¦   ¦                       UserDetailsServiceImpl.java
+¦       ¦   ¦                       
+¦       ¦   L---resources
+¦       ¦       ¦   application.properties
+¦       ¦       ¦           
+¦       ¦       +---static
+¦       ¦       ¦   L---static
+¦       ¦       ¦       +---css
+¦       ¦       ¦       L---js
+¦       ¦       L---templates                           
++---db
+¦       init.sql
+¦       
+L---frontend
+    ¦   .gitignore
+    ¦   frontend.iml
+    ¦   package-lock.json
+    ¦   package.json
+    ¦   README.md
+    ¦   
+    L---src
+        ¦   App.css
+        ¦   App.js
+        ¦   App.test.js
+        ¦   index.css
+        ¦   index.js
+        ¦   logo.svg
+        ¦   reportWebVitals.js
+        ¦   setupTests.js
+        ¦   
+        +---components
+        ¦   +---Auth
+        ¦   ¦       LoginForm.js
+        ¦   ¦       RegisterForm.js
+        ¦   ¦       WelcomeBanner.js
+        ¦   ¦       
+        ¦   +---Post
+        ¦   ¦       PostCard.js
+        ¦   ¦       PostForm.js
+        ¦   ¦       PostList.js
+        ¦   ¦       
+        ¦   L---User
+        ¦           ProfileForm.js
+        ¦           
+        +---pages
+        ¦   ¦   404Page.js
+        ¦   ¦   HomePage.js
+        ¦   ¦   
+        ¦   +---Auth
+        ¦   ¦       LoginPage.js
+        ¦   ¦       RegisterPage.js
+        ¦   ¦       
+        ¦   +---Post
+        ¦   ¦       PostCreatePage.js
+        ¦   ¦       PostEditPage.js
+        ¦   ¦       PostFormPage.js
+        ¦   ¦       PostPage.js
+        ¦   ¦       PostsPage.js       
+        ¦   L---User
+        ¦           ProfilePage.js
+        ¦           
+        L---services
+            ¦   ProtectedRoute.js
+            ¦   
+            +---api
+            ¦       api.js
+            ¦       authApi.js
+            ¦       postApi.js
+            ¦       userApi.js
+            ¦       
+            L---context
+                    AuthContext.js
+                    

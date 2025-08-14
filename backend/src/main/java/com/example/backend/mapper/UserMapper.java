@@ -4,9 +4,11 @@ import com.example.backend.dto.UserRequestDto;
 import com.example.backend.dto.UserResponseDto;
 import com.example.backend.model.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
+@Component
 public final class UserMapper {
 
     private static final BCryptPasswordEncoder ENC = new BCryptPasswordEncoder();

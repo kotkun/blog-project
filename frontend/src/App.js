@@ -1,25 +1,33 @@
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import PostPage from './pages/PostPage';
-import PostFormPage from "./pages/PostFormPage";
-import ProtectedRoute from "./services/ProtectedRoute";
-import UserProfile from "./pages/UserProfile";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './services/context/AuthContext';
+import ProtectedRoute from './services/ProtectedRoute';
+import PostsPage from './pages/Post/PostsPage';
+import PostPage from './pages/Post/PostPage';
+import PostCreatePage from './pages/Post/PostCreatePage';
+import PostEditPage from './pages/Post/PostEditPage';
+import ProfilePage from './pages/User/ProfilePage';
+import LoginPage from './pages/Auth/LoginPage';
+import RegisterPage from './pages/Auth/RegisterPage';
 
-export default function App() {
+function App() {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<HomePage/>}/>
-                <Route path="/posts/:id" element={<PostPage/>}/>
-                <Route path="/posts/new" element={<PostFormPage/>}/>
-                <Route path="/posts/edit/:id" element={<PostFormPage/>}/>
+        <AuthProvider>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<PostsPage />} />
+                    <Route path="/posts/:id" element={<PostPage />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/register" element={<RegisterPage />} />
 
-                <Route element={<ProtectedRoute />}>
-                    <Route path="/posts/new" element={<PostFormPage />} />
-                    <Route path="/posts/edit/:id" element={<PostFormPage />} />
-                    <Route path="/profile" element={<UserProfile />} />
-                </Route>
-            </Routes>
-        </BrowserRouter>
+                    <Route element={<ProtectedRoute />}>
+                        <Route path="/posts/create" element={<PostCreatePage />} />
+                        <Route path="/posts/:id/edit" element={<PostEditPage />} />
+                        <Route path="/profile" element={<ProfilePage />} />
+                    </Route>
+                </Routes>
+            </BrowserRouter>
+        </AuthProvider>
     );
 }
+
+export default App;
